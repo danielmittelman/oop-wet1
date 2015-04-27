@@ -12,10 +12,11 @@ import OOP2.Solution.EdgeImpl;
 import OOP2.Solution.VertexImpl;
 
 public class GraphTests {
+	/*
 	@Test
 	public void ExampleTest() {
 	
-		/*Vertex v = new VertexImpl("v",0);
+		Vertex v = new VertexImpl("v",0);
 		Vertex u = new VertexImpl("u",1);
 		v.connect(u);
 		Collection<Edge> edges = v.getSuccessors();
@@ -24,8 +25,9 @@ public class GraphTests {
 		BFSGraphWalk bfs = new BFSGraphWalk(v);
 		for (Vertex w : bfs) {
 			Assert.assertNotNull(w);
-		}*/
+		}
 	}
+	*/
 	
 	@Test
 	public void GraphTest() {
@@ -58,6 +60,11 @@ public class GraphTests {
 		v5.connect(v4);
 		v6.connect(v3);
 		
+		// Test Value() and setValue()
+		Assert.assertEquals(2, v2_2.Value());
+		v2_2.setValue(5);
+		Assert.assertEquals(5, v2_2.Value());
+		
 		// Test the size() method of Vertex
 		Assert.assertEquals(6, v1.size());
 		Assert.assertEquals(6, v2.size());
@@ -66,7 +73,7 @@ public class GraphTests {
 		Assert.assertEquals(6, v5.size());
 		Assert.assertEquals(2, v6.size());
 		
-		/* Test the getSuccessors() method and that the order in which they are returned
+		/* Test the getSuccessors() method and that the order in which the edges are returned
 		 * is similar to the one they were entered */
 		Edge e1 = new EdgeImpl(v1);
 		Edge e2 = new EdgeImpl(v5);
@@ -79,5 +86,8 @@ public class GraphTests {
 			Assert.assertEquals(e2, it.next());
 			Assert.assertEquals(e3, it.next());
 		}
+		
+		// Test the find() method
+		// TODO Write when implemented
 	}
 }

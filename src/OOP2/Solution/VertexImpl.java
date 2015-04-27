@@ -32,7 +32,7 @@ public class VertexImpl implements Vertex {
 
 	@Override
 	public Collection<Vertex> find(Vertex target) {
-		// TODO Write this
+		// TODO I believe this is supposed to be based on the BFSGraphWalk class,
 		return null;
 	}
 
@@ -56,7 +56,7 @@ public class VertexImpl implements Vertex {
 
 	@Override
 	public int setValue(int val) {
-		// TODO WTF? This method does not appear in the assignment PDF
+		mValue = val;
 		return 0;
 	}
 	
