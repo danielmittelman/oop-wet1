@@ -60,6 +60,7 @@ public class PriorityQueueImpl implements PriorityQueue, Iterable<Vertex> {
 			throw new IllegalArgumentException("Null argument received");
 		}
 		vertices.add(new PQElement(v, tag));
+		Collections.sort(vertices);
 	}
 
 	@Override
@@ -97,7 +98,6 @@ public class PriorityQueueImpl implements PriorityQueue, Iterable<Vertex> {
 
 			@Override
 			public Vertex next() {
-				Collections.sort(vertices);
 				return iter.next().getVertex();
 			}
 
