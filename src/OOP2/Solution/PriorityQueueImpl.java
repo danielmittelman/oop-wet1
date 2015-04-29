@@ -2,6 +2,7 @@ package OOP2.Solution;
 
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 
@@ -12,7 +13,7 @@ import OOP2.Provided.Vertex;
 public class PriorityQueueImpl implements PriorityQueue, Iterable<Vertex> {
 	
 	private UIDGenerator uidGenerator;
-	private List<PQElement> vertices; 
+	private List<PQElement> vertices;
 	
 	private class UIDGenerator {
 		private int uid = 0;
@@ -30,14 +31,6 @@ public class PriorityQueueImpl implements PriorityQueue, Iterable<Vertex> {
 			return vertex;
 		}
 
-		public int getUid() {
-			return uid;
-		}
-
-		public int getTag() {
-			return tag;
-		}
-
 		public PQElement(Vertex vertex, int tag) {
 			this.vertex = vertex;
 			this.tag = tag;
@@ -49,7 +42,6 @@ public class PriorityQueueImpl implements PriorityQueue, Iterable<Vertex> {
 			if (this.tag != o.tag) {
 				return this.tag - o.tag;
 			}
-			// TODO: sanity check!
 			return this.uid - o.uid;
 		}
 	}
@@ -59,36 +51,61 @@ public class PriorityQueueImpl implements PriorityQueue, Iterable<Vertex> {
 	 */
 	public PriorityQueueImpl() {
 		vertices = new ArrayList<PQElement>();
+		uidGenerator = new UIDGenerator();
 	}
 
 	@Override
 	public void enqueue(Vertex v, int tag) {
-		// TODO Auto-generated method stub
-		
+		if (v == null) {
+			throw new IllegalArgumentException("Null argument received");
+		}
+		vertices.add(new PQElement(v, tag));
 	}
 
 	@Override
 	public Vertex dequeue() throws QueueEmptyException {
-		// TODO Auto-generated method stub
-		return null;
+		if (vertices.isEmpty()) {
+			throw new QueueEmptyException();
+		}
+		Collections.sort(vertices);
+		return vertices.remove(0).getVertex();
 	}
 
 	@Override
 	public Vertex peek() throws QueueEmptyException {
-		// TODO Auto-generated method stub
-		return null;
+		if (vertices.isEmpty()) {
+			throw new QueueEmptyException();
+		}
+		Collections.sort(vertices);
+		return vertices.get(0).getVertex();
 	}
 
 	@Override
 	public boolean isEmpty() {
-		// TODO Auto-generated method stub
-		return false;
+		return vertices.isEmpty();
 	}
 
 	@Override
 	public Iterator<Vertex> iterator() {
-		// TODO Auto-generated method stub
-		return null;
+		return new Iterator<Vertex>() {
+			private Iterator<PQElement> iter = vertices.iterator();
+			
+			@Override
+			public boolean hasNext() {
+				return iter.hasNext();
+			}
+
+			@Override
+			public Vertex next() {
+				Collections.sort(vertices);
+				return iter.next().getVertex();
+			}
+
+			@Override
+			public void remove() {
+				iter.remove();
+			}
+		};
 	}
 	
 }
