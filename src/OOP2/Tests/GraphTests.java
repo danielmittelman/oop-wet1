@@ -12,23 +12,7 @@ import OOP2.Solution.EdgeImpl;
 import OOP2.Solution.VertexImpl;
 
 public class GraphTests {
-	/*
-	@Test
-	public void ExampleTest() {
-	
-		Vertex v = new VertexImpl("v",0);
-		Vertex u = new VertexImpl("u",1);
-		v.connect(u);
-		Collection<Edge> edges = v.getSuccessors();
-		Assert.assertEquals(1, edges.size());
-		
-		BFSGraphWalk bfs = new BFSGraphWalk(v);
-		for (Vertex w : bfs) {
-			Assert.assertNotNull(w);
-		}
-	}
-	*/
-	
+
 	@Test
 	public void GraphTest() {
 		Vertex v1 = new VertexImpl("A", 1);
