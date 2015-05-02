@@ -64,7 +64,7 @@ public class PriorityQueueImpl implements PriorityQueue, Iterable<Vertex> {
 			throw new IllegalArgumentException("Null argument received");
 		}
 		for (PQElement e : vertices) {
-			if (e.getVertex() == v)
+			if (e.getVertex().equals(v))
 				return true;
 		}
 		return false;
