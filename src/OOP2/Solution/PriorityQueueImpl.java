@@ -53,6 +53,22 @@ public class PriorityQueueImpl implements PriorityQueue, Iterable<Vertex> {
 		vertices = new ArrayList<PQElement>();
 		uidGenerator = new UIDGenerator();
 	}
+	
+	/**
+	 * Checks if the given vertex is contained in vertices.
+	 * @param v The vertex to be checked
+	 * @return true if v is in vertices, otherwise false
+	 */
+	public boolean contains(Vertex v) {
+		if (v == null) {
+			throw new IllegalArgumentException("Null argument received");
+		}
+		for (PQElement e : vertices) {
+			if (e.getVertex() == v)
+				return true;
+		}
+		return false;
+	}
 
 	@Override
 	public void enqueue(Vertex v, int tag) {

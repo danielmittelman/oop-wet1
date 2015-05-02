@@ -19,11 +19,12 @@ public class PQTests {
 	  
 	@Test
 	public void IllegalArgumentExceptionTest() {
-		PriorityQueue pq = new PriorityQueueImpl();
+		PriorityQueueImpl pq = new PriorityQueueImpl();
 		
 		exception.expect(IllegalArgumentException.class);
 		exception.expectMessage("Null argument received");
 		pq.enqueue(null, 0);
+		pq.contains(null);
 	}
 	
 	@Test
@@ -74,5 +75,14 @@ public class PQTests {
 			Assert.assertTrue(it.next().equals(new VertexImpl("Element " + Integer.toString(i), i)));
 		}
 		Assert.assertFalse(it.hasNext());
+		
+		Vertex v = new VertexImpl("Aaa", 3);
+		Assert.assertFalse(pq.contains(v));
+		pq.enqueue(v, 0);
+		Assert.assertTrue(pq.contains(v));
+		pq.dequeue();
+		Assert.assertTrue(pq.contains(v));
+		pq.dequeue();
+		Assert.assertFalse(pq.contains(v));
 	}
 }
