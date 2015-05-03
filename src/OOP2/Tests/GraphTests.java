@@ -2,6 +2,7 @@ package OOP2.Tests;
 
 import java.util.Collection;
 import java.util.Iterator;
+import java.util.List;
 
 import org.junit.Assert;
 import org.junit.Test;
@@ -50,6 +51,7 @@ public class GraphTests {
 		Assert.assertEquals(5, v2_2.Value());
 		
 		// Test the size() method of Vertex
+		// If this thrown a StackOverflowError, you have entered an infinite loop
 		Assert.assertEquals(6, v1.size());
 		Assert.assertEquals(6, v2.size());
 		Assert.assertEquals(1, v3.size());
@@ -72,6 +74,23 @@ public class GraphTests {
 		}
 		
 		// Test the find() method
-		// TODO Write when implemented
+		// If this thrown a StackOverflowError, you have entered an infinite loop
+		Collection<Vertex> path = v1.find(v4);
+		Assert.assertEquals(3, path.size());
+		
+		path = v1.find(v6);
+		Assert.assertEquals(4, path.size());
+		
+		path = v4.find(v4);
+		Assert.assertEquals(1, path.size());
+		
+		path = v1.find(v3);
+		Assert.assertEquals(5, path.size());
+		
+		// Test the find() method using an impossible path
+		Vertex v7 = new VertexImpl("G", 7);
+		path = v1.find(v7);
+		// Assert what? what is the return value?
+		
 	}
 }

@@ -1,5 +1,6 @@
 package OOP2.Solution;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.LinkedHashSet;
 import java.util.LinkedList;
@@ -32,8 +33,9 @@ public class VertexImpl implements Vertex {
 
 	@Override
 	public Collection<Vertex> find(Vertex target) {
-		// TODO I believe this is supposed to be based on the BFSGraphWalk class,
-		return null;
+		ArrayList<Vertex> path = new ArrayList<Vertex>();
+		boolean foundPath = findRecursive(this, target, path);
+		return path;
 	}
 
 	@Override
@@ -68,6 +70,33 @@ public class VertexImpl implements Vertex {
 		
 		return ((VertexImpl) other).mName.equals(mName) && 
 				((VertexImpl) other).mValue == mValue;
+	}
+	
+	private boolean findRecursive(Vertex current, Vertex end, ArrayList<Vertex> path) {
+		// Check if the current vertex was visited before
+		if(!(path.isEmpty()) && path.contains(current)) {
+			return false;
+		} else {
+			path.add(current);
+		}
+		
+		// If the path was already found, stop and return
+		if(path.get(path.size() - 1).equals(end)) {
+			return true;
+		}
+		
+		for(Edge e : current.getSuccessors()) {
+			if(!path.contains(e.getEndpoint())) {
+				boolean found = findRecursive(e.getEndpoint(), end, path);
+				if(found) {
+					return true;
+				} else {
+					path.remove(e.getEndpoint());
+				}
+			}
+		}
+		
+		return false;
 	}
 	
 	private void sizeRecursive(Vertex root, Set<Vertex> vertices) {
