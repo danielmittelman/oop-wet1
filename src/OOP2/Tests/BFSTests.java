@@ -11,7 +11,7 @@ import OOP2.Provided.Vertex;
 import OOP2.Solution.BFSGraphWalk;
 import OOP2.Solution.VertexImpl;
 
-public class GraphWalkTests {
+public class BFSTests {
 	
 	@Test
 	public void BFSGraphWalkTest() {
