@@ -90,7 +90,7 @@ public class GraphTests {
 		// Test the find() method using an impossible path
 		Vertex v7 = new VertexImpl("G", 7);
 		path = v1.find(v7);
-		// Assert what? what is the return value?
+		Assert.assertEquals(0, path.size());
 		
 	}
 }

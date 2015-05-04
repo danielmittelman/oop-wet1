@@ -35,7 +35,13 @@ public class VertexImpl implements Vertex {
 	public Collection<Vertex> find(Vertex target) {
 		ArrayList<Vertex> path = new ArrayList<Vertex>();
 		boolean foundPath = findRecursive(this, target, path);
-		return path;
+		
+		// If a path was found, return it, otherwise return an empty collection
+		if(foundPath) {
+			return path;
+		} else {
+			return new ArrayList<Vertex>();
+		}
 	}
 
 	@Override
